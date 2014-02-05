@@ -25,13 +25,13 @@ class SuperMonologServiceProvider implements ServiceProviderInterface
 
         $app['monolog.handler'] = function() use ($app){
 
-            $Activationlevel = MonologServiceProvider::translateLevel($app['monolog.fingerscrossed.level']);
+			$Activationlevel = MonologServiceProvider::translateLevel($app['monolog.fingerscrossed.level']);
 			$level = MonologServiceProvider::translateLevel($app['monolog.level']);
 
 			/* If debug mode, then returning a StreamHandler */
-            if($app['debug'] || (isset($app['monolog.fingerscrossed']) && !$app['monolog.fingerscrossed'] && isset($app['monolog.rotatingfile']) && !$app['monolog.rotatingfile'])){
-                return new StreamHandler($app['monolog.logfile'], $level);
-            }
+			if($app['debug'] || (isset($app['monolog.fingerscrossed']) && !$app['monolog.fingerscrossed'] && isset($app['monolog.rotatingfile']) && !$app['monolog.rotatingfile'])){
+				return new StreamHandler($app['monolog.logfile'], $level);
+			}
 
 			/* If fingercrossed disabled */
 			if(isset($app['monolog.fingerscrossed']) && !$app['monolog.fingerscrossed']) {
@@ -40,7 +40,7 @@ class SuperMonologServiceProvider implements ServiceProviderInterface
 
 			/* If rotating file disabled */
 			if(isset($app['monolog.rotatingfile']) && !$app['monolog.rotatingfile']) {
-                return new FingersCrossedHandler(new StreamHandler($app['monolog.logfile'], $level), $Activationlevel);
+				return new FingersCrossedHandler(new StreamHandler($app['monolog.logfile'], $level), $Activationlevel);
 			}
 
 			return new FingersCrossedHandler($app['monolog.fingerscrossed.handler'], $Activationlevel);
