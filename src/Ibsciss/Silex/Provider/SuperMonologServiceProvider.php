@@ -14,36 +14,39 @@ class SuperMonologServiceProvider implements ServiceProviderInterface
 {
     public function register(Application $app)
     {
-        $app['monolog.fingerscrossed.level'] = Logger::NOTICE;
-
+        //parent service provider activation
         $app->register(new MonologServiceProvider());
 
+        //define default options
+        $app['monolog.fingerscrossed.level'] = Logger::NOTICE;
+        $app['monolog.fingerscrossed'] = true;
+        $app['monolog.rotatingfile'] = false;
         $app['monolog.fingerscrossed.handler'] = function() use ($app){
             $level = MonologServiceProvider::translateLevel($app['monolog.level']);
-            return new RotatingFileHandler($app['monolog.logfile'], 5, $level);
+            return new StreamHandler($app['monolog.logfile']);
         };
 
+        //main override function
         $app['monolog.handler'] = function() use ($app){
 
+            //setup level
 			$Activationlevel = MonologServiceProvider::translateLevel($app['monolog.fingerscrossed.level']);
 			$level = MonologServiceProvider::translateLevel($app['monolog.level']);
 
-			/* If debug mode, then returning a StreamHandler */
-			if($app['debug'] || (isset($app['monolog.fingerscrossed']) && !$app['monolog.fingerscrossed'] && isset($app['monolog.rotatingfile']) && !$app['monolog.rotatingfile'])){
-				return new StreamHandler($app['monolog.logfile'], $level);
-			}
+            //debug mode
+			if($app['debug'])
+                return (isset($app['monolog.handler.debug'])) ?
+                    $app['monolog.handler.debug'] :
+				    new StreamHandler($app['monolog.logfile'], $level);
 
-			/* If fingercrossed disabled */
-			if(isset($app['monolog.fingerscrossed']) && !$app['monolog.fingerscrossed']) {
-				return $app['monolog.fingerscrossed.handler'];	
-			}
+            //if rotatingfile enable : figerscrossedHandler override
+            if($app['monolog.rotatingfile'])
+                $app['monolog.fingerscrossed.handler'] = new RotatingFileHandler($app['monolog.logfile'], 5, $level);
 
-			/* If rotating file disabled */
-			if(isset($app['monolog.rotatingfile']) && !$app['monolog.rotatingfile']) {
-				return new FingersCrossedHandler(new StreamHandler($app['monolog.logfile'], $level), $Activationlevel);
-			}
-
-			return new FingersCrossedHandler($app['monolog.fingerscrossed.handler'], $Activationlevel);
+            //apply default strategy
+			return ($app['monolog.fingerscrossed']) ?
+                new FingersCrossedHandler($app['monolog.fingerscrossed.handler'], $Activationlevel) :
+                $app['monolog.fingerscrossed.handler'];
         };
 
     }
