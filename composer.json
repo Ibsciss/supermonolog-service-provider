@@ -1,0 +1,31 @@
+{
+    "name": "ibsciss/supermonolog-service-provider",
+    "description": "An extended monolog service provider for silex framework. Add crossFinger & log rotation handlers as options.",
+    "keywords": ["silex", "monolog", "log", "logrotate", "service provider", "service-provider", "crossfinger"],
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Ibsciss",
+            "email": "community@ibsciss.com",
+            "homepage": "http://www.ibsciss.com"
+        },
+        {
+            "name": "Arnaud LEMAIRE",
+            "email" : "alemaire@ibsciss.com"
+        }
+    ],
+    "support": {
+        "email": "community@ibsciss.com",
+        "issues" : "https://github.com/Ibsciss/supermonolog-service-provider/issues"
+    },
+    "require": {
+        "silex/silex": "~1.0",
+        "monolog/monolog": "~1.7"
+    },
+    "autoload": {
+        "psr-0": {
+            "Ibsciss": "src/"
+        }
+    }
+}
