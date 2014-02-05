@@ -79,37 +79,37 @@ class SuperMonologServiceProviderTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($test->hasWarningRecords());
     }
 
-    // public function testDisabledCrossedStrategy()
-    // {
-    //     $app = $this->getApplication();
-    //     $app['monolog.fingerscrossed'] = false;
+    public function testDisabledCrossedStrategy()
+    {
+         $app = $this->getApplication();
+         $app['monolog.fingerscrossed'] = false;
 
-    //     $handler = $app['monolog']->popHandler();
-    //     $this->assertInstanceOf('Monolog\Handler\RotatingFileHandler', $handler);
-    // }
+         $handler = $app['monolog']->popHandler();
+         $this->assertInstanceOf('Monolog\Handler\RotatingFileHandler', $handler);
+    }
 
-    // public function testDisabledRotatingFileStrategy()
-    // {
-    //     $app = $this->getApplication();
-    //     $app['monolog.rotatingfile'] = false;
+    public function testDisabledRotatingFileStrategy()
+    {
+         $app = $this->getApplication();
+         $app['monolog.rotatingfile'] = false;
 
-    //     $mainHandler = $app['monolog']->popHandler();
-    //     $nestedHandler = \PHPUnit_Framework_Assert::readAttribute($mainHandler, 'handler');
+         $mainHandler = $app['monolog']->popHandler();
+         $nestedHandler = \PHPUnit_Framework_Assert::readAttribute($mainHandler, 'handler');
 
-    //     $this->assertInstanceOf('Monolog\Handler\FingersCrossedHandler', $mainHandler);
-    //     $this->assertInstanceOf('Monolog\Handler\StreamHandler', $nestedHandler);
-    //     $this->assertNotInstanceOf('Monolog\Handler\RotatingFileHandler', $nestedHandler);
-    // }
+         $this->assertInstanceOf('Monolog\Handler\FingersCrossedHandler', $mainHandler);
+         $this->assertInstanceOf('Monolog\Handler\StreamHandler', $nestedHandler);
+         $this->assertNotInstanceOf('Monolog\Handler\RotatingFileHandler', $nestedHandler);
+    }
 
-    // public function testDisabledBothFingersCrossedAndRotatingFileStrategy()
-    // {
-    //     $app = $this->getApplication();
-    //     $app['monolog.rotatingfile'] = false;
-    //     $app['monolog.fingerscrossed'] = false;
+    public function testDisabledBothFingersCrossedAndRotatingFileStrategy()
+    {
+         $app = $this->getApplication();
+         $app['monolog.rotatingfile'] = false;
+         $app['monolog.fingerscrossed'] = false;
 
-    //     $handler = $app['monolog']->popHandler();
-    //     $this->assertInstanceOf('Monolog\Handler\StreamHandler', $handler);
-    // }
+         $handler = $app['monolog']->popHandler();
+         $this->assertInstanceOf('Monolog\Handler\StreamHandler', $handler);
+    }
 
     protected function getApplication()
     {
