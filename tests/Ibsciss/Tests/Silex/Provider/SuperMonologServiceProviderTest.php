@@ -1,6 +1,6 @@
 <?php
 
-namespace Ibsciss\Silex\Provider\Tests;
+namespace Ibsciss\Tests\Silex\Provider;
 
 use Silex\Application;
 use Silex\Provider\MonologServiceProvider;
