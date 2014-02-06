@@ -45,7 +45,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 
 After the `SuperMonologService` registration, only the `FingersCrossed` strategy is activated (and only in production mode).
 
-In debug mode (`$app['debug'] = true;`) the service provide a `StreamHandler` or, if defined, the handler specified in the `monolog.handler.debug` option.
+In debug mode (`$app['debug'] = true;`) the service provide a basic `StreamHandler`.
 
 *You can disable the `FingersCrossed` strategy with the `monolog.fingerscrossed` attribute set to `false` and come back to the `StreamHandler` used by the default `MonologServiceProvider`.*
 

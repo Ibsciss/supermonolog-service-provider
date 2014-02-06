@@ -21,7 +21,8 @@
     },
     "require": {
         "silex/silex": "~1.0",
-        "monolog/monolog": "~1.7"
+        "monolog/monolog": "~1.7",
+        "symfony/monolog-bridge": "~2.4"
     },
     "autoload": {
         "psr-0": {

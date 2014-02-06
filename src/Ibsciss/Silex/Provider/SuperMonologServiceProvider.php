@@ -35,10 +35,7 @@ class SuperMonologServiceProvider implements ServiceProviderInterface
 			$level = SuperMonologServiceProvider::translateLevel($app['monolog.level']);
 
             //debug mode
-			if($app['debug'])
-                return (isset($app['monolog.handler.debug'])) ?
-                    $app['monolog.handler.debug'] :
-				    new StreamHandler($app['monolog.logfile'], $level);
+			if($app['debug']) return new StreamHandler($app['monolog.logfile'], $level);
 
             //if rotatingfile enable : figerscrossedHandler override
             if($app['monolog.rotatingfile'])

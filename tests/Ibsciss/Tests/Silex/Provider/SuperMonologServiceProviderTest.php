@@ -46,6 +46,9 @@ class SuperMonologServiceProviderTest extends \PHPUnit_Framework_TestCase
         $app = $this->getApplication();
         $app['debug'] = true;
 
+        //remove the sf-bridge handler
+        $app['monolog']->popHandler();
+
         $this->assertInstanceOf('Monolog\Handler\streamHandler', $app['monolog']->popHandler());
     }
 
