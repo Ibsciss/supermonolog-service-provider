@@ -7,7 +7,7 @@ An extended **monolog** service provider for **Silex framework** [![Build Status
 
 The silex built-in `MonologServiceProvider` use only a few of the monolog habilities, and don't allow advanced configuration.
 
-This `**Super**MonologService` is more extensible and provide two new logs strategies in the silex core :
+This **SuperMonologService** is more extensible and provide two new logs strategies in the silex core :
 
 * A `FingersCrossed` strategy
 * A `RotatingFile` strategy
