@@ -110,6 +110,20 @@ class SuperMonologServiceProviderTest extends \PHPUnit_Framework_TestCase
          $this->assertInstanceOf('Monolog\Handler\RotatingFileHandler', $handler);
     }
 
+    public function testMaxFilesInRotatingStrategy()
+    {
+        $app = $this->getApplication();
+        $app['monolog.rotatingfile'] = true;
+        $app['monolog.fingerscrossed'] = false;
+        $app['monolog.rotatingfile.maxfiles'] = 7;
+
+        $handler = $app['monolog']->popHandler();
+        $maxfiles = \PHPUnit_Framework_Assert::readAttribute($handler, 'maxFiles');
+
+        $this->assertEquals(7, $maxfiles);
+
+    }
+
     protected function getApplication()
     {
         $app = new Application();

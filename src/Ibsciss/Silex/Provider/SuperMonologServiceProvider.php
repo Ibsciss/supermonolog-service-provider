@@ -21,6 +21,7 @@ class SuperMonologServiceProvider implements ServiceProviderInterface
         $app['monolog.fingerscrossed.level'] = Logger::NOTICE;
         $app['monolog.fingerscrossed'] = true;
         $app['monolog.rotatingfile'] = false;
+        $app['monolog.rotatingfile.maxfiles'] = 10;
         $app['monolog.fingerscrossed.handler'] = function() use ($app){
             $level = MonologServiceProvider::translateLevel($app['monolog.level']);
             return new StreamHandler($app['monolog.logfile']);
@@ -41,7 +42,11 @@ class SuperMonologServiceProvider implements ServiceProviderInterface
 
             //if rotatingfile enable : figerscrossedHandler override
             if($app['monolog.rotatingfile'])
-                $app['monolog.fingerscrossed.handler'] = new RotatingFileHandler($app['monolog.logfile'], 5, $level);
+                $app['monolog.fingerscrossed.handler'] = new RotatingFileHandler(
+                    $app['monolog.logfile'],
+                    $app['monolog.rotatingfile.maxfiles'],
+                    $level
+                );
 
             //apply default strategy
 			return ($app['monolog.fingerscrossed']) ?
