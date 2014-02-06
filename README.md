@@ -1,7 +1,7 @@
 supermonolog-service-provider
 =============================
 
-An extended **monolog** service provider for **Silex framework** [![Build Status](https://travis-ci.org/Ibsciss/supermonolog-service-provider.png?branch=master)](https://travis-ci.org/Ibsciss/supermonolog-service-provider)
+An extended **monolog** service provider for **Silex framework** [[![Build Status](https://travis-ci.org/Ibsciss/supermonolog-service-provider.png?branch=master)](https://travis-ci.org/Ibsciss/supermonolog-service-provider)
 
 ## Why a **Super**MonologService ?
 
