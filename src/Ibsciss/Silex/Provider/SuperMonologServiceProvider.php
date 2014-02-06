@@ -23,7 +23,7 @@ class SuperMonologServiceProvider implements ServiceProviderInterface
         $app['monolog.rotatingfile'] = false;
         $app['monolog.rotatingfile.maxfiles'] = 10;
         $app['monolog.fingerscrossed.handler'] = function() use ($app){
-            $level = self::translateLevel($app['monolog.level']);
+            $level = SuperMonologServiceProvider::translateLevel($app['monolog.level']);
             return new StreamHandler($app['monolog.logfile']);
         };
 
@@ -31,8 +31,8 @@ class SuperMonologServiceProvider implements ServiceProviderInterface
         $app['monolog.handler'] = function() use ($app){
 
             //setup level
-			$Activationlevel = self::translateLevel($app['monolog.fingerscrossed.level']);
-			$level = self::translateLevel($app['monolog.level']);
+			$Activationlevel = SuperMonologServiceProvider::translateLevel($app['monolog.fingerscrossed.level']);
+			$level = SuperMonologServiceProvider::translateLevel($app['monolog.level']);
 
             //debug mode
 			if($app['debug'])
