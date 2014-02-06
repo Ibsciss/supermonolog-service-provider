@@ -3,7 +3,6 @@
 namespace Ibsciss\Tests\Silex\Provider;
 
 use Silex\Application;
-use Silex\Provider\MonologServiceProvider;
 
 use Monolog\Logger;
 use Monolog\TestCase;
@@ -121,7 +120,23 @@ class SuperMonologServiceProviderTest extends \PHPUnit_Framework_TestCase
         $maxfiles = \PHPUnit_Framework_Assert::readAttribute($handler, 'maxFiles');
 
         $this->assertEquals(7, $maxfiles);
+    }
 
+    public function testIfNormalizerFormatterIsLoadedByDefault()
+    {
+        $app = $this->getApplication();
+        $handler = $app['monolog']->popHandler();
+        $nestedHandler = \PHPUnit_Framework_Assert::readAttribute($handler, 'handler');
+        $formatter = $nestedHandler->getFormatter();
+        $this->assertInstanceOf('Monolog\Formatter\NormalizerFormatter', $formatter);
+    }
+
+    public function testIfNormalizerFormatterInDebug()
+    {
+        $app = $this->getApplication();
+        $app['debug'] = true;
+        $formatter = $app['monolog']->popHandler()->getFormatter();
+        $this->assertInstanceOf('Monolog\Formatter\NormalizerFormatter', $formatter);
     }
 
     protected function getApplication()

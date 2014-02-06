@@ -23,7 +23,7 @@ class SuperMonologServiceProvider implements ServiceProviderInterface
         $app['monolog.rotatingfile'] = false;
         $app['monolog.rotatingfile.maxfiles'] = 10;
         $app['monolog.fingerscrossed.handler'] = function() use ($app){
-            $level = MonologServiceProvider::translateLevel($app['monolog.level']);
+            $level = self::translateLevel($app['monolog.level']);
             return new StreamHandler($app['monolog.logfile']);
         };
 
@@ -31,8 +31,8 @@ class SuperMonologServiceProvider implements ServiceProviderInterface
         $app['monolog.handler'] = function() use ($app){
 
             //setup level
-			$Activationlevel = MonologServiceProvider::translateLevel($app['monolog.fingerscrossed.level']);
-			$level = MonologServiceProvider::translateLevel($app['monolog.level']);
+			$Activationlevel = self::translateLevel($app['monolog.fingerscrossed.level']);
+			$level = self::translateLevel($app['monolog.level']);
 
             //debug mode
 			if($app['debug'])
@@ -57,4 +57,21 @@ class SuperMonologServiceProvider implements ServiceProviderInterface
     }
 
     public function boot(Application $app){}
+
+    public static function translateLevel($name)
+    {
+        // level is already translated to logger constant, return as-is
+        if (is_int($name)) {
+            return $name;
+        }
+
+        $levels = Logger::getLevels();
+        $upper = strtoupper($name);
+
+        if (!isset($levels[$upper])) {
+            throw new \InvalidArgumentException("Provided logging level '$name' does not exist. Must be a valid monolog logging level.");
+        }
+
+        return $levels[$upper];
+    }
 }
