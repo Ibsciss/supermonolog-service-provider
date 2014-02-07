@@ -24,6 +24,9 @@
         "monolog/monolog": "~1.7",
         "symfony/monolog-bridge": "~2.4"
     },
+    "require-dev": {
+        "satooshi/php-coveralls": "dev-master"
+    },
     "autoload": {
         "psr-0": {
             "Ibsciss": "src/"
