@@ -3,7 +3,7 @@ supermonolog-service-provider
 
 An extended **monolog** service provider for **Silex framework**
 
-[![Build Status](https://travis-ci.org/Ibsciss/supermonolog-service-provider.png?branch=master)](https://travis-ci.org/Ibsciss/supermonolog-service-provider) [![Coverage Status](https://coveralls.io/repos/Ibsciss/supermonolog-service-provider/badge.png?branch=master)](https://coveralls.io/r/Ibsciss/supermonolog-service-provider?branch=master)
+[![Build Status](https://travis-ci.org/Ibsciss/supermonolog-service-provider.png?branch=master)](https://travis-ci.org/Ibsciss/supermonolog-service-provider) [![Coverage Status](https://coveralls.io/repos/Ibsciss/supermonolog-service-provider/badge.png?branch=master)](https://coveralls.io/r/Ibsciss/supermonolog-service-provider?branch=master) [![Latest Stable Version](https://poser.pugx.org/ibsciss/supermonolog-service-provider/v/stable.png)](https://packagist.org/packages/ibsciss/supermonolog-service-provider) [![Latest Unstable Version](https://poser.pugx.org/ibsciss/supermonolog-service-provider/v/unstable.png)](https://packagist.org/packages/ibsciss/supermonolog-service-provider) [![License](https://poser.pugx.org/ibsciss/supermonolog-service-provider/license.png)](https://packagist.org/packages/ibsciss/supermonolog-service-provider)
 
 ## Why a **Super**MonologService ?
 
