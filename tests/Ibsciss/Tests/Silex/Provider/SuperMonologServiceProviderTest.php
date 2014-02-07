@@ -142,6 +142,15 @@ class SuperMonologServiceProviderTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Monolog\Formatter\NormalizerFormatter', $formatter);
     }
 
+    public function testTranslateLevel()
+    {
+        $this->assertEquals(300, SuperMonologServiceProvider::translateLevel('warning'));
+        $this->assertEquals(100, SuperMonologServiceProvider::translateLevel(100));
+
+        $this->setExpectedException('InvalidArgumentException');
+        SuperMonologServiceProvider::translateLevel('test');
+    }
+
     protected function getApplication()
     {
         $app = new Application();
