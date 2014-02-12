@@ -46,9 +46,13 @@ class SuperMonologServiceProvider implements ServiceProviderInterface
                 );
 
             //apply default strategy
-			return ($app['monolog.fingerscrossed']) ?
+			$handler = ($app['monolog.fingerscrossed']) ?
                 new FingersCrossedHandler($app['monolog.fingerscrossed.handler'], $Activationlevel) :
                 $app['monolog.fingerscrossed.handler'];
+
+            $handler->setFormatter(new \Monolog\Formatter\JsonFormatter());
+
+            return $handler;
         };
 
     }

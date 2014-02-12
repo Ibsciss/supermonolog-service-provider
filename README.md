@@ -33,7 +33,7 @@ Like before, the Monolog documentation give us the answer :
 1. Add `"Ibsciss/supermonolog-service-provider": "dev-master"` in the require section of your `composer.json` file and run the `composer update` command.
 2. Register the service with the silex register method `$app->register(new SuperMonologServiceProvider())` (don't forget the use `\Ibsciss\Silex\Provider\SuperMonologServiceProvider` statement).
 
-## Basic usage
+## Basic use
 
 SuperMonolog extends the original `monolog` service (and the associated `logger` service) by overriding the `monolog.handler` service to push is own strategy on it. So you can use your `$app['monolog']` service as before.
 
@@ -48,6 +48,8 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 After the `SuperMonologService` registration, only the `FingersCrossed` strategy is activated (and only in production mode).
 
 In debug mode (`$app['debug'] = true;`) the service provide a basic `StreamHandler`.
+
+**Note : by default a JsonFormatter is used to generate log**
 
 *You can disable the `FingersCrossed` strategy with the `monolog.fingerscrossed` attribute set to `false` and come back to the `StreamHandler` used by the default `MonologServiceProvider`.*
 
