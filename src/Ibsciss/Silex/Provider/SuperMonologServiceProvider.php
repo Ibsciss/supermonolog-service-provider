@@ -37,7 +37,7 @@ class SuperMonologServiceProvider implements ServiceProviderInterface
             //debug mode
 			if ($app['debug']) {
                 $handler = new StreamHandler($app['monolog.logfile'], $level);
-                $handler->setFormatter(new \Monolog\Formatter\JsonFormatter());
+                $handler->setFormatter(new \Ibsciss\Monolog\Formatter\LineFormatter());
                 return $handler;
             }
 
@@ -54,7 +54,7 @@ class SuperMonologServiceProvider implements ServiceProviderInterface
                 new FingersCrossedHandler($app['monolog.fingerscrossed.handler'], $Activationlevel) :
                 $app['monolog.fingerscrossed.handler'];
 
-            $handler->setFormatter(new \Monolog\Formatter\JsonFormatter());
+            $handler->setFormatter(new \Ibsciss\Monolog\Formatter\LineFormatter());
 
             return $handler;
         };
